@@ -3,10 +3,10 @@
         <img class="welcome" src="">
         <div class="login">
             <div class="login_user">
-
+                <input type="text" placeholder="请输入用户名／邮箱／手机号">
             </div>
             <div class="login_password">
-
+                <input type="password" placeholder="请输入密码">
             </div>
             <div class="login_button">
                 <input type="button" value="登录">
