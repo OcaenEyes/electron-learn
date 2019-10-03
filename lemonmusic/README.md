@@ -1,6 +1,6 @@
 # lemonmusic
 
-> 一个音乐应用
+> 柠檬音乐
 
 #### Build Setup
 
@@ -13,6 +13,9 @@ npm run dev
 
 # build electron application for production
 npm run build
+
+# run unit & end-to-end tests
+npm test
 
 
 ```
