@@ -12,4 +12,13 @@
 
 <style>
   /* CSS */
+  a{
+    text-decoration: none;
+  }
+  #app {
+    font-family:"Hiragino Sans GB";
+    font-size: 13px;
+
+  }
+
 </style>
