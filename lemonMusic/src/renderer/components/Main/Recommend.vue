@@ -17,6 +17,7 @@
       </el-col>
     </el-row>
 
+
     <el-row style="margin-bottom:20px;">
       <h3>推荐MV</h3>
       <el-col
@@ -49,7 +50,7 @@ export default {
   data() {
     return {
       recommendMusicList: null,
-      recommendMvList: null
+      recommendMvList: null,
     };
   },
   created() {
@@ -67,7 +68,7 @@ export default {
       this.$http
         .get("http://localhost:3000/personalized/mv")
         .then(res => (this.recommendMvList = res.data.result));
-    }
+    },
   }
 };
 </script>
