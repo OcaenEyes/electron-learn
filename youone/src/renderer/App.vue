@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="leftcontent">
+    <div class="leftcontent" :style="leftcontentview">
       <SideBar></SideBar>
     </div>
     <div class="rightcontent">
@@ -38,6 +38,9 @@ export default {
         bottom: "64px",
         position: "fixed",
       },
+      leftcontentview:{
+        height:"",
+      }
     };
   },
 
@@ -47,6 +50,7 @@ export default {
       console.log(this.maincontentview.width);
       this.maincontentview.height = windowHeight - 128 + "px";
       console.log(this.maincontentview.height);
+      this.leftcontentview.height = windowHeight
     },
   },
   created() {
@@ -71,6 +75,6 @@ export default {
   left: 0;
   bottom: 0;
   width: 210px;
-  background-color: beige;
+  background-color: rgb(245, 245, 245);
 }
 </style>
