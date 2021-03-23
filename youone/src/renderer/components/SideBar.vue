@@ -83,12 +83,20 @@ export default {
 }
 .sidebar .nav-item {
   list-style: none;
+  width: 128px;
+  padding-right: 8px;
+  padding-left: 8px;
+  margin-bottom:10px;
+  border-radius: 6px;
 }
-
+.nav-item:hover{
+  background-color: rgb(202, 202, 202);
+  
+}
 .sidebar .nav-item a {
   display: block;
-  height: 40px;
-  line-height: 40px;
+  height: 36px;
+  line-height: 36px;
   font-size: 14px;
   text-overflow: ellipsis;
   text-decoration: none;
