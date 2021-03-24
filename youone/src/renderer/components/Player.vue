@@ -1,7 +1,7 @@
 <template>
   <div class="player">
-    <div class="progressbar">进度条</div>
-    <div class="controls">
+    <div class="progressbar">这是进度条</div>
+    <div class="play-controls">
       <div class="music-palying-info">左</div>
 
       <div class="middle-control-buttons">中</div>
@@ -28,6 +28,16 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   height: 64px;
-  background-color: azure;
+  -webkit-app-region: no-drag;
+}
+.progressbar {
+  font-size: 12px;
+  text-align: center;
+}
+.play-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 </style>

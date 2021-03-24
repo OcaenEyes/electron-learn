@@ -38,19 +38,21 @@ export default {
         bottom: "64px",
         position: "fixed",
       },
-      leftcontentview:{
-        height:"",
-      }
+      leftcontentview: {
+        height: "",
+      },
     };
   },
 
   methods: {
     getView() {
+      console.log("windowWidth");
+      console.log(windowWidth);
       this.maincontentview.width = windowWidth - 210 + "px";
       console.log(this.maincontentview.width);
       this.maincontentview.height = windowHeight - 128 + "px";
       console.log(this.maincontentview.height);
-      this.leftcontentview.height = windowHeight
+      this.leftcontentview.height = windowHeight;
     },
   },
   created() {
@@ -68,13 +70,17 @@ export default {
 #app {
   display: flex;
   flex-direction: row;
+  font-family: "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
 }
 .leftcontent {
   position: fixed;
   top: 0;
   left: 0;
-  bottom: 0;
   width: 210px;
   background-color: rgb(245, 245, 245);
+  -webkit-user-select: none;
+}
+img {
+  -webkit-user-select: none;
 }
 </style>

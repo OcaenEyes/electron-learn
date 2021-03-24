@@ -2,11 +2,13 @@
   <div>
     <nav>
       <div class="titlebar">
-        <div class="title">YouOneMusic</div>
+        <div class="title">返回</div>
+        <div class="search">
+          <!-- <input type="text" placeholder="搜索" /> -->
+        </div>
         <div class="controls">
-          <div class="button" @click="windowMinimize">最小化</div>
-          <div class="button" @click="widowMaxRestore">最大化</div>
-          <div class="button" @click="windowClose">关闭</div>
+          <div class="button" @click="userInfo">账户</div>
+          <div class="button" @click="setting">设置</div>
         </div>
       </div>
     </nav>
@@ -16,6 +18,10 @@
 <script>
 export default {
   name: "NavBar",
+  methods: {
+    userInfo() {},
+    setting() {},
+  },
 };
 </script>
 
@@ -27,8 +33,8 @@ nav {
   left: 210px;
   height: 64px;
   line-height: 48px;
-  background-color: azure;
   z-index: 100;
+  -webkit-app-region: drag;
 }
 .titlebar {
   display: flex;
@@ -38,13 +44,15 @@ nav {
 }
 .titlebar .title {
   padding: 8px;
-  font-size: 16px;
+  padding-left: 30px;
+  font-size: 14px;
   margin-bottom: 0;
   font-family: "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
 }
 .titlebar .controls {
   height: 32px;
   margin-left: auto;
+  padding-right: 20px;
   display: flex;
   justify-content: flex-end;
   font-family: "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
