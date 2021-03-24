@@ -2,11 +2,11 @@
   <div class="player">
     <div class="progressbar">这是进度条</div>
     <div class="play-controls">
-      <div class="music-palying-info">左</div>
+      <div class="music-palying-info">播放信息</div>
 
-      <div class="middle-control-buttons">中</div>
+      <div class="middle-control-buttons">控制器</div>
 
-      <div class="right-control-buttons">右</div>
+      <div class="right-control-buttons">快捷菜单</div>
     </div>
   </div>
 </template>
@@ -31,10 +31,11 @@ export default {
   -webkit-app-region: no-drag;
 }
 .progressbar {
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
 }
 .play-controls {
+  font-size: 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
