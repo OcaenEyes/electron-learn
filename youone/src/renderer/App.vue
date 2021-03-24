@@ -76,11 +76,15 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;
   width: 210px;
   background-color: rgb(245, 245, 245);
   -webkit-user-select: none;
 }
 img {
   -webkit-user-select: none;
+}
+a{
+  text-decoration: none;
 }
 </style>

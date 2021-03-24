@@ -1,6 +1,9 @@
 <template>
   <div>
-    <H3><span>&nbsp&nbsp</span>推荐歌单</H3>
+    <h3 >
+      <span>&nbsp&nbsp</span><a href="" style="color:#000">推荐歌单</a>
+    </h3>
+
     <div class="lists">
       <div class="list-item" v-for="(o, i) in 8" :key="o">
         <div class="cover">
@@ -32,7 +35,7 @@ export default {
 }
 .list-item {
   width: 23%;
-  /* max-width: 12%; */
+  max-width: 240px;
   margin-right: 1%;
   margin-left: 1%;
   margin-top: 2px;

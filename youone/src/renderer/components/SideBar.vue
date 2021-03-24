@@ -7,10 +7,10 @@
     <div :style="sidescroll" class="side-scroll-bar">
       <div class="nav-head">
         <ul>
-          <li class="nav-item"><a href="">推荐</a></li>
-          <li class="nav-item"><a href="">音乐馆</a></li>
-          <li class="nav-item"><a href="">视频</a></li>
-          <li class="nav-item"><a href="">电台</a></li>
+          <li class="nav-item"><a href=""><i class="fa fa-headphones"></i><span>&nbsp&nbsp&nbsp</span>推荐</a></li>
+          <li class="nav-item"><a href=""><i class="fa fa-music"></i><span>&nbsp&nbsp&nbsp</span>音乐馆</a></li>
+          <li class="nav-item"><a href=""><i class="fa fa-video-camera"></i><span>&nbsp&nbsp&nbsp</span>视频</a></li>
+          <li class="nav-item"><a href=""><i class="fa fa-podcast"></i><span>&nbsp&nbsp&nbsp</span>电台</a></li>
         </ul>
       </div>
 
@@ -32,7 +32,6 @@
         </ul>
       </div>
     </div>
-    <div style="height: 20px; background-color: #fff"></div>
   </div>
 </template>
 
@@ -51,7 +50,7 @@ export default {
   },
   methods: {
     getView() {
-      this.sidescroll.height = windowHeight - 56 + "px";
+      this.sidescroll.height = windowHeight - 78 + "px";
       console.log("sidescroll height ");
       console.log(this.sidescroll.height);
     },
@@ -68,11 +67,11 @@ export default {
 
 <style scoped>
 .logo {
-  width: 120px;
-  height: 34px;
-  padding-left: 30px;
+  /* width: 120px; */
+  /* height: 30px; */
+  padding-left: 25px;
   padding-top: 16px;
-  margin-top: 28px;
+  margin-top: 20px;
   margin-bottom: 4px;
   -webkit-app-region: drag;
 }
@@ -91,7 +90,7 @@ export default {
   width: 128px;
   padding-right: 8px;
   padding-left: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   border-radius: 6px;
 }
 .sidebar .nav-group ul {
@@ -100,6 +99,9 @@ export default {
 }
 .nav-item:hover {
   background-color: rgb(202, 202, 202);
+}
+.nav-item:active {
+  background-color: rgb(32, 136, 92);
 }
 .sidebar .nav-item a {
   display: block;

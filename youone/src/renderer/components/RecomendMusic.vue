@@ -31,6 +31,8 @@ export default {
 .daliy-music {
   height: 40%;
   max-height: 340px;
+  padding-top: 0;
+  padding-right: 20px;
   padding-left: 20px;
   margin-bottom: 10px;
 }

@@ -2,7 +2,11 @@
   <div>
     <nav>
       <div class="titlebar">
-        <div class="title">返回</div>
+        <div class="title">
+          <i class="fa fa-chevron-left "></i>
+          <span>&nbsp&nbsp&nbsp&nbsp</span>
+          <i class="fa fa-chevron-right"></i>
+        </div>
         <div class="search">
           <!-- <input type="text" placeholder="搜索" /> -->
         </div>
@@ -47,6 +51,7 @@ nav {
   padding-left: 30px;
   font-size: 14px;
   margin-bottom: 0;
+  color: rgb(124, 124, 124);
   font-family: "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
 }
 .titlebar .controls {
