@@ -3,9 +3,9 @@
     <nav>
       <div class="titlebar">
         <div class="title">
-          <i class="fa fa-chevron-left "></i>
+          <i class="fa fa-angle-left fa-lg"></i>
           <span>&nbsp&nbsp&nbsp&nbsp</span>
-          <i class="fa fa-chevron-right"></i>
+          <i class="fa fa-angle-right fa-lg"></i>
         </div>
         <div class="search">
           <!-- <input type="text" placeholder="搜索" /> -->

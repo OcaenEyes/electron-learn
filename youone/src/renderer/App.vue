@@ -84,7 +84,7 @@ export default {
 img {
   -webkit-user-select: none;
 }
-a{
+a {
   text-decoration: none;
 }
 </style>
