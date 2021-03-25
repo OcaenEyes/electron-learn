@@ -1,6 +1,14 @@
 <template>
   <div class="player">
-    <div class="progressbar"></div>
+    <div class="progressbar">
+      <vue-slider 
+      v-model="value"
+      :contained="true"
+      :height="2"
+      :dotSize="[4,4]"
+      :tooltip="'none'">
+      </vue-slider>
+    </div>
     <div class="play-controls">
       <div class="music-palying-info">播放信息</div>
       <div class="middle-control-buttons">
@@ -17,14 +25,18 @@
 </template>
 
 <script>
+import VueSlider from 'vue-slider-component';
+import 'vue-slider-component/theme/default.css';
 export default {
   name: "Player",
+  components:{
+    VueSlider
+  },
   data() {
     return {
-      value: [0, 100],
+      value:0,
     };
   },
-  components: {},
 };
 </script>
 
@@ -40,6 +52,10 @@ export default {
   justify-content: space-around;
   height: 64px;
   -webkit-app-region: no-drag;
+}
+.progressbar{
+  padding-left: 24px;
+  padding-right: 28px;
 }
 .play-controls {
   font-size: 12px;
