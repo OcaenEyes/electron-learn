@@ -140,6 +140,10 @@ export default class {
         return [this.list[this.current + 1], this.current - 1];
     }
 
+    _getPrevTrack() {
+
+    }
+
     _playAudioSource(source, autoplay = true) {
         Howler.unload();
         this._howler = new Howler({
@@ -148,7 +152,7 @@ export default class {
             format: ["mp3", "flac"]
         });
         if (autoplay) {
-            this.paly();
+            this.play();
             document.title = `${this._currentTack.name} .${this._currentTack.ar[0].name}- YouOneMusci`;
         }
         this.setOutPutDevice();
@@ -185,5 +189,160 @@ export default class {
     }
 
     _getAudioSourceFromUnblockMusic(track) {
+
+    }
+
+    _getAudioSource(track) {
+
+    }
+
+    _replaceCurrentTrack(id, autoplay = true, ifUnplayableThen = "playNextTrack") {
+
+    }
+
+    _cacheNextTrack() {
+
+    }
+
+    _loadSelfFromLocalStorage() {
+
+    }
+
+    _intMediaSession() {
+
+    }
+
+    _updateMediaSessionMetaData(track) {
+
+    }
+
+    _updateMediaSessionPositionState() {
+
+    }
+
+    _nexTrackCallback() {
+
+    }
+
+    _loadPersonalFMNextTrack() {
+
+    }
+
+    _playDiscordPresence(track, seekTime = 0) {
+
+    }
+
+    _pauseDiscordPresence(track) {
+
+    }
+
+    currentTrackId() {
+        const { list, current } = this._getListAndCurrent();
+
+    }
+
+    appendTrack(trackId) {
+
+    }
+
+    playNextTrack(isFM = false) {
+
+    }
+
+    playPrevTrack() {
+
+    }
+
+    saveSelfToLocalStorage() {
+
+    }
+
+    pause() {
+        this._howler.pause();
+        this._playing = false;
+        document.title = "YouOneMusic"
+        this._pauseDiscordPresence(this._currentTrack);
+    }
+
+    play() {
+        if (this._howler.playing()) return;
+        this._howler.play();
+        this._playing = true;
+        document.title = `${this._currentTrack.name} · ${this._currentTrack.ar[0].name} - YouOneMusic`;
+        this._playDiscordPresence(this._currentTrack, this.seek());
+        if (store.state.lastfm.key !== undefined) {
+            trackUpdateNowPlaying({
+                artist: this.currentTrack.ar[0].name,
+                track: this.currentTrack.name,
+                album: this.currentTrack.al.name,
+                trackNumber: this.currentTrack.no,
+                duration: ~~(this.currentTrack.dt / 1000),
+            });
+        }
+    }
+
+    playOrPause() {
+        if (this._howler.playing()) {
+            this.pause();
+        } else {
+            this.play();
+        }
+    }
+
+    seek(time = null) {
+        if (time !== null) {
+            this._howler.seek(time);
+            if (this._playing) {
+                this._playDiscordPresence(this._currentTrack, this.seek())
+            }
+        }
+        return this._howler === null ? 0 : this._howler.seek();
+    }
+
+    mute() {
+
+    }
+
+    setOutputDevice() {
+        if (this._howler._sounds.length <= 0 || !this._howler._sounds[0]._node) {
+            return;
+        }
+        this._howler._sounds[0]._node.setSinkId(store.state.settings.outputDevice);
+    }
+
+    replacePlaylist(trackIDs, playlistSourceID, playlistSourceType, autoPlayTrackID = "first") {
+
+    }
+
+    playAlbumByID(id, trackID = "first") {
+
+    }
+
+    playPlaylistByID(id, trackID = "first", noCache = false) {
+
+    }
+
+    playArtistByID(id, trackID = "first") {
+
+    }
+
+    playTrackOnListByID(id, listName = "default") {
+
+    }
+
+    addTrackToPlayNext(trackID, playNow = false) {
+
+    }
+
+    playPersonalFM() {
+
+    }
+
+    moveToFMTrash() {
+
+    }
+
+    sendSelfToIpcMain() {
+
     }
 }
