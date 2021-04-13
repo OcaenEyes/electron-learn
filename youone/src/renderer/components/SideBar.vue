@@ -17,8 +17,15 @@
       <div class="nav-group">
         <div class="nav-group-title">创建的歌单</div>
         <ul>
-          <li class="nav-item" v-for="(o, i) in 5" :key="o">
-            <a href="">创建的歌单{{ i + 1 }}</a>
+          <li class="nav-item" >
+            
+            <a href=""><i class="fa fa-heart"></i><span>&nbsp&nbsp&nbsp</span>我喜欢的音乐</a>
+          </li>
+          <li class="nav-item" >
+            <a href=""><i class="fa fa-heart"></i><span>&nbsp&nbsp&nbsp</span>2019年度音乐</a>
+          </li>
+          <li class="nav-item" >
+            <a href=""><i class="fa fa-heart"></i><span>&nbsp&nbsp&nbsp</span>2020年度音乐</a>
           </li>
         </ul>
       </div>
@@ -27,7 +34,7 @@
         <div class="nav-group-title">收藏的歌单</div>
         <ul>
           <li class="nav-item" v-for="(o, i) in 10" :key="o">
-            <a href="">收藏的歌单{{ i + 1 }}</a>
+            <a href=""><i class="fa fa-music"></i><span>&nbsp&nbsp&nbsp</span>收藏的歌单{{ i + 1 }}</a>
           </li>
         </ul>
       </div>
@@ -75,7 +82,9 @@ export default {
   margin-bottom: 4px;
   -webkit-app-region: drag;
 }
-
+ul{
+  padding-left: 20px;
+}
 .nav-group {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -83,13 +92,13 @@ export default {
 .nav-group-title {
   font-size: 12px;
   color: #666;
-  padding-left: 40px;
+  padding-left: 36px;
 }
 .sidebar .nav-item {
   list-style: none;
   width: 128px;
   padding-right: 8px;
-  padding-left: 8px;
+  padding-left: 16px;
   margin-bottom: 4px;
   border-radius: 6px;
 }

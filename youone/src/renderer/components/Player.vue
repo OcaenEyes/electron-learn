@@ -16,7 +16,7 @@
           <img src="../assets/1.jpg" alt="" />
         </div>
         <div class="song-info">
-          <div class="song-name">歌名歌名-歌手</div>
+          <div class="song-name">The Saltwater Room-Owl City</div>
           <div class="song-time">00:00/03:18</div>
         </div>
       </div>
@@ -94,6 +94,9 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+}
+.song-name{
+  white-space: nowrap;
 }
 .song-time {
   color: #666;
