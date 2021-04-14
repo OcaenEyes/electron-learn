@@ -22,8 +22,8 @@
       </div>
       <div class="middle-control-buttons">
         <i class="fa fa-step-backward fa-lg"></i>
-        <i class="fa fa-play-circle fa-2x"></i>
-        <!-- <i class="fa fa-pause fa-2x"></i> -->
+        <i class="fa fa-play-circle fa-2x" @click.native="play"></i>
+        <!-- <i class="fa fa-pause fa-2x" @click.native="pause"></i> -->
         <i class="fa fa-step-forward fa-lg"></i>
         <i class="fa fa-volume-down fa-lg"></i>
       </div>
@@ -38,8 +38,9 @@
 
 <script>
 import VueSlider from "vue-slider-component";
-
 import "../css/sliderStyle.css";
+import { Howl, Howler } from "howler";
+
 export default {
   name: "Player",
   components: {
@@ -49,6 +50,23 @@ export default {
     return {
       value: 0,
     };
+  },
+  methods: {
+    _playmusic() {
+      var song = new Howl({
+        src: ["../audio/80s_vibe.mp3", "../audio/80s_vibe.webm"],
+        autoplay: true,
+        volume: 0.5,
+        onended: function () {
+          console.log("播放结束");
+        },
+      });
+      song.play();
+    },
+  },
+  mounted() {},
+  created() {
+    this._playmusic();
   },
 };
 </script>
@@ -95,7 +113,7 @@ export default {
   align-items: flex-start;
   justify-content: space-between;
 }
-.song-name{
+.song-name {
   white-space: nowrap;
 }
 .song-time {
