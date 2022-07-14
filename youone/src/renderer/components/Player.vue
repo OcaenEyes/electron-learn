@@ -22,7 +22,7 @@
       </div>
       <div class="middle-control-buttons">
         <i class="fa fa-step-backward fa-lg"></i>
-        <i class="fa fa-play-circle fa-2x" @click.native="play"></i>
+        <i class="fa fa-play-circle fa-2x"></i>
         <!-- <i class="fa fa-pause fa-2x" @click.native="pause"></i> -->
         <i class="fa fa-step-forward fa-lg"></i>
         <i class="fa fa-volume-down fa-lg"></i>
