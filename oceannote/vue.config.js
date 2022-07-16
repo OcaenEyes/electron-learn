@@ -4,13 +4,22 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-15 17:35:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 00:24:02
+ * @LastEditTime: 2022-07-16 16:16:17
  */
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   runtimeCompiler: true,
   publicPath: './',
+  pwa: {
+    iconPaths: {
+      favicon32: 'favicon.png',
+      favicon16: 'favicon.png',
+      appleTouchIcon: 'favicon.png',
+      maskIcon: 'favicon.png',
+      msTileImage: 'favicon.png'
+    }
+  },
   // electron 13 把"build":{}从package.json移除，在vue.config.js里写
   pluginOptions: {
     electronBuilder: {
@@ -47,20 +56,20 @@ module.exports = defineConfig({
               type: 'file'
             }
           ]
-        },
-        // productName 包名称 version 包版本(package.json)  ext后缀
-        mac: {
-          icon: 'public/icons/icon.icns',
-          artifactName: '${productName}_setup_${version}.${ext}'
-        },
-        win: {
-          icon: 'public/icons/icon.ico',
-          artifactName: '${productName}_setup_${version}.${ext}'
-        },
-        linux: {
-          icon: 'public/icons',
-          artifactName: '${productName}_setup_${version}.${ext}'
         }
+        // productName 包名称 version 包版本(package.json)  ext后缀
+        // mac: {
+        //   icon: 'public/icons/icon.icns',
+        //   artifactName: '${productName}_setup_${version}.${ext}'
+        // },
+        // win: {
+        //   icon: 'public/icons/icon.ico',
+        //   artifactName: '${productName}_setup_${version}.${ext}'
+        // },
+        // linux: {
+        //   icon: 'public/icons',
+        //   artifactName: '${productName}_setup_${version}.${ext}'
+        // }
       }
     }
   }
