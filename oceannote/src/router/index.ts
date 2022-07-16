@@ -1,11 +1,20 @@
+/*
+ * @Description: .
+ * @Version: 0.0.1
+ * @Autor: OCEAN.GZY
+ * @Date: 2022-07-15 23:43:11
+ * @LastEditors: OCEAN.GZY
+ * @LastEditTime: 2022-07-16 10:02:10
+ */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import MarkdownCore from '../views/MarkdownCore.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'MarkdownCore',
+    component: MarkdownCore
   },
   {
     path: '/about',
