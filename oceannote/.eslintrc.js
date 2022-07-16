@@ -1,3 +1,11 @@
+/*
+ * @Description: .
+ * @Version: 0.0.1
+ * @Autor: OCEAN.GZY
+ * @Date: 2022-07-16 14:04:33
+ * @LastEditors: OCEAN.GZY
+ * @LastEditTime: 2022-07-16 14:23:45
+ */
 module.exports = {
   root: true,
   env: {
@@ -16,7 +24,8 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@typescript-eslint/no-explicit-any': ['off'],
     '@typescript-eslint/semi': 'off',
-    '@typescript-eslint/camelcase': 'off'
+    '@typescript-eslint/camelcase': 'off',
+    'space-before-function-paren': 0
   },
   overrides: [
     {

@@ -4,32 +4,24 @@
  * @Autor: OCEAN.GZY
  * @Date: 2022-07-16 09:50:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 13:57:12
+ * @LastEditTime: 2022-07-16 14:32:04
 -->
 <template>
   <div class="main-app" :style="{ height: viewh }">
-    <el-row :gutter="10" style="height: 100%; margin: 0">
-      <el-col :xs="20" :sm="12" :md="12" :lg="11" :xl="11">
-        <WriteWidget></WriteWidget
-      ></el-col>
-      <el-col :xs="0" :sm="12" :md="12" :lg="11" :xl="11">
-        <Readwidget></Readwidget
-      ></el-col>
-    </el-row>
+    <div id="editor" style="height:100%">
+      <mavon-editor v-model="inputtext" style="height: 100%"></mavon-editor>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onBeforeMount, ref } from 'vue'
-import Readwidget from '../components/ReadWidget.vue'
-import WriteWidget from '../components/WriteWidget.vue'
 
 export default defineComponent({
   name: 'MarkdownCore',
-  components: { Readwidget, WriteWidget },
-  setup () {
+  setup() {
     const viewh = ref('')
-
+    const inputtext = ref('')
     window.onresize = () => {
       viewh.value = Number(`${document.documentElement.clientHeight}`) + 'px'
     }
@@ -40,7 +32,8 @@ export default defineComponent({
       // console.log(viewh)
     })
     return {
-      viewh
+      viewh,
+      inputtext
     }
   }
 })
