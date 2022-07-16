@@ -4,11 +4,12 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-16 00:03:46
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 23:26:17
+ * @LastEditTime: 2022-07-17 00:08:30
  */
 import { app, protocol, BrowserWindow, ipcMain, MenuItemConstructorOptions, dialog, shell, Menu, globalShortcut } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import fs from 'fs'
+import { readFile } from 'original-fs'
 // import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 let openedFile = ''
@@ -51,7 +52,17 @@ const template: Array<MenuItemConstructorOptions> = [
     label: '文件',
     submenu: [
       {
-        label: '打开文件',
+        label: '新建文档',
+        accelerator: 'CmdOrCtrl+N',
+        click: () => {
+          openedFile = ''
+          if (win) {
+            win.webContents.send('clearContentToNew', '')
+          }
+        }
+      },
+      {
+        label: '打开文档',
         accelerator: 'CmdOrCtrl+O',
         click: () => {
           dialog.showOpenDialog(
@@ -74,7 +85,7 @@ const template: Array<MenuItemConstructorOptions> = [
         }
       },
       {
-        label: '保存文件',
+        label: '保存文档',
         accelerator: 'CmdOrCtrl+S',
         click: () => {
           if (win) {

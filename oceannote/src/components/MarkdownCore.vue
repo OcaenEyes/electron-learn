@@ -4,7 +4,7 @@
  * @Autor: OCEAN.GZY
  * @Date: 2022-07-16 09:50:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 23:41:05
+ * @LastEditTime: 2022-07-17 00:05:46
 -->
 <template>
   <div id="editor" style="height:100%">
@@ -28,6 +28,9 @@ export default defineComponent({
       })
       ipcRenderer.on('getContentToSave', () => {
         ipcRenderer.send('saveContent', inputtext.value)
+      })
+      ipcRenderer.on('clearContentToNew', () => {
+        inputtext.value = ''
       })
     })
     return {
