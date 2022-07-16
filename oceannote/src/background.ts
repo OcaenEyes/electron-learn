@@ -4,13 +4,48 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-16 00:03:46
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 22:31:10
+ * @LastEditTime: 2022-07-16 23:26:17
  */
-import { app, protocol, BrowserWindow, ipcMain, MenuItemConstructorOptions, dialog, shell, Menu } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, MenuItemConstructorOptions, dialog, shell, Menu, globalShortcut } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import path from 'path'
+import fs from 'fs'
 // import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
+let openedFile = ''
+// 主线程
+ipcMain.on('saveContent', (event, content) => {
+  if (openedFile.length > 0) {
+    try {
+      fs.writeFileSync(openedFile, content)
+      console.log('保存成功')
+    } catch (error) {
+      console.log('保存失败')
+    }
+  } else {
+    if (win) {
+      dialog.showSaveDialog(
+        win,
+        {
+          title: '保存文件',
+          defaultPath: 'new.md',
+          filters: [{ name: 'Markdown', extensions: ['md'] }]
+        }
+      ).then((res) => {
+        if (res.filePath) {
+          try {
+            fs.writeFileSync(res.filePath, content)
+            console.log('保存成功')
+            openedFile = res.filePath
+          } catch (error) {
+            console.log('保存失败')
+          }
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+  }
+})
 const template: Array<MenuItemConstructorOptions> = [
   {
     label: '文件',
@@ -26,29 +61,25 @@ const template: Array<MenuItemConstructorOptions> = [
               properties: ['openFile'],
               filters: [{ name: 'Markdown', extensions: ['md'] }]
             }
-          )
+          ).then((res) => {
+            if (res && res.filePaths.length > 0) {
+              if (win) {
+                win.webContents.send('fileOpenPath', res.filePaths[0])
+                openedFile = res.filePaths[0]
+              }
+            }
+          }).catch((err) => {
+            console.log(err)
+          })
         }
       },
       {
         label: '保存文件',
         accelerator: 'CmdOrCtrl+S',
         click: () => {
-          dialog.showSaveDialog(
-            {
-              title: '文件保存为'
-            }
-          )
-        }
-      },
-      {
-        label: '文件另存为',
-        accelerator: 'Shift+CmdOrCtrl+S',
-        click: () => {
-          dialog.showSaveDialog(
-            {
-              title: '文件另存为'
-            }
-          )
+          if (win) {
+            win.webContents.send('getContentToSave', '')
+          }
         }
       },
       { type: 'separator' },
@@ -110,6 +141,33 @@ async function createWindow() {
   win.on('closed', () => {
     win = null
   })
+
+  win.on('focus', () => {
+    // mac下快捷键失效的问题
+    if (process.platform === 'darwin') {
+      const contents = win.webContents
+      globalShortcut.register('CommandOrControl+C', () => {
+        console.log('注册复制快捷键成功')
+        contents.copy()
+      })
+      globalShortcut.register('CommandOrControl+V', () => {
+        console.log('注册粘贴快捷键成功')
+        contents.paste()
+      })
+      globalShortcut.register('CommandOrControl+X', () => {
+        console.log('注册剪切快捷键成功')
+        contents.cut()
+      })
+      globalShortcut.register('CommandOrControl+A', () => {
+        console.log('注册全选快捷键成功')
+        contents.selectAll()
+      })
+    }
+  })
+
+  win.on('blur', () => {
+    globalShortcut.unregisterAll() // 注销键盘事件
+  })
 }
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -140,6 +198,7 @@ app.on('ready', async () => {
   if (win === null) createWindow()
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 })
+
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
   if (process.platform === 'win32') {
