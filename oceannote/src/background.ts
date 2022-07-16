@@ -4,19 +4,75 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-16 00:03:46
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 16:59:16
+ * @LastEditTime: 2022-07-16 22:31:10
  */
-import { app, protocol, BrowserWindow, ipcMain } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, MenuItemConstructorOptions, dialog, shell, Menu } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import path from 'path'
 // import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
+const template: Array<MenuItemConstructorOptions> = [
+  {
+    label: '文件',
+    submenu: [
+      {
+        label: '打开文件',
+        accelerator: 'CmdOrCtrl+O',
+        click: () => {
+          dialog.showOpenDialog(
+            {
+              title: '打开文件',
+              defaultPath: '',
+              properties: ['openFile'],
+              filters: [{ name: 'Markdown', extensions: ['md'] }]
+            }
+          )
+        }
+      },
+      {
+        label: '保存文件',
+        accelerator: 'CmdOrCtrl+S',
+        click: () => {
+          dialog.showSaveDialog(
+            {
+              title: '文件保存为'
+            }
+          )
+        }
+      },
+      {
+        label: '文件另存为',
+        accelerator: 'Shift+CmdOrCtrl+S',
+        click: () => {
+          dialog.showSaveDialog(
+            {
+              title: '文件另存为'
+            }
+          )
+        }
+      },
+      { type: 'separator' },
+      { label: '退出', accelerator: 'CmdOrCtrl+Q', role: 'quit' }]
+  },
+  {
+    label: '编辑',
+    submenu: [
+      { label: '撤销', accelerator: 'CmdOrCtrl+Z', role: 'undo' },
+      { label: '重做', accelerator: 'Shift+CmdOrCtrl+Z', role: 'redo' },
+      { type: 'separator' },
+      { label: '剪切', accelerator: 'CmdOrCtrl+X', role: 'cut' },
+      { label: '复制', accelerator: 'CmdOrCtrl+C', role: 'copy' },
+      { label: '粘贴', accelerator: 'CmdOrCtrl+V', role: 'paste' }
+    ]
+  },
+  { label: '关于', submenu: [{ label: '关于作者', click: () => { shell.openExternal('http://oceaneyes.top') } }] }
+]
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
 let win: any = null
-async function createWindow () {
+async function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     useContentSize: true,
@@ -82,6 +138,7 @@ app.on('ready', async () => {
   //     }
   //   }
   if (win === null) createWindow()
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 })
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
