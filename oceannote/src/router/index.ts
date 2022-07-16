@@ -4,7 +4,7 @@
  * @Autor: OCEAN.GZY
  * @Date: 2022-07-15 23:43:11
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 15:15:45
+ * @LastEditTime: 2022-07-16 17:41:22
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
@@ -14,6 +14,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'HomeView',
     component: HomeView
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
   }
   // {
   //   path: '/about',

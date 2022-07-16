@@ -4,7 +4,7 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-16 00:03:46
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 00:34:16
+ * @LastEditTime: 2022-07-16 16:59:16
  */
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'

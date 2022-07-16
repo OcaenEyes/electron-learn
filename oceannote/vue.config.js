@@ -4,7 +4,7 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-15 17:35:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 16:16:17
+ * @LastEditTime: 2022-07-16 17:14:39
  */
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
@@ -38,7 +38,7 @@ module.exports = defineConfig({
           allowToChangeInstallationDirectory: true,
           createDesktopShortcut: true,
           createStartMenuShortcut: true,
-          shortcutName: 'ocnote',
+          shortcutName: 'oceannote',
           perMachine: true,
           oneClick: false
         },
@@ -56,20 +56,20 @@ module.exports = defineConfig({
               type: 'file'
             }
           ]
-        }
+        },
         // productName 包名称 version 包版本(package.json)  ext后缀
-        // mac: {
-        //   icon: 'public/icons/icon.icns',
-        //   artifactName: '${productName}_setup_${version}.${ext}'
-        // },
-        // win: {
-        //   icon: 'public/icons/icon.ico',
-        //   artifactName: '${productName}_setup_${version}.${ext}'
-        // },
-        // linux: {
-        //   icon: 'public/icons',
-        //   artifactName: '${productName}_setup_${version}.${ext}'
-        // }
+        mac: {
+          icon: 'public/icons/icon.icns'
+
+        },
+        win: {
+          icon: 'public/icons/icon.ico'
+
+        },
+        linux: {
+          icon: 'public/icons'
+
+        }
       }
     }
   }
