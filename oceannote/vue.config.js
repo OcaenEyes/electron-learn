@@ -4,7 +4,7 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-15 17:35:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-16 17:14:39
+ * @LastEditTime: 2022-07-17 21:05:08
  */
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
@@ -34,6 +34,12 @@ module.exports = defineConfig({
             url: ''
           }
         ],
+        fileAssociations: {
+          ext: [
+            'md',
+            'markdown'
+          ]
+        },
         nsis: {
           allowToChangeInstallationDirectory: true,
           createDesktopShortcut: true,
@@ -59,8 +65,12 @@ module.exports = defineConfig({
         },
         // productName 包名称 version 包版本(package.json)  ext后缀
         mac: {
-          icon: 'public/icons/icon.icns'
-
+          icon: 'public/icons/icon.icns',
+          extendInfo: {
+            CFBundleURLSchemes: [
+              'protocol'
+            ]
+          }
         },
         win: {
           icon: 'public/icons/icon.ico'
