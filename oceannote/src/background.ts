@@ -4,12 +4,11 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-16 00:03:46
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-17 00:08:30
+ * @LastEditTime: 2022-07-17 10:35:15
  */
 import { app, protocol, BrowserWindow, ipcMain, MenuItemConstructorOptions, dialog, shell, Menu, globalShortcut } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import fs from 'fs'
-import { readFile } from 'original-fs'
 // import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 let openedFile = ''
@@ -53,7 +52,7 @@ const template: Array<MenuItemConstructorOptions> = [
     submenu: [
       {
         label: '新建文档',
-        accelerator: 'CmdOrCtrl+N',
+        accelerator: 'Shift+CmdOrCtrl+N',
         click: () => {
           openedFile = ''
           if (win) {
@@ -63,7 +62,7 @@ const template: Array<MenuItemConstructorOptions> = [
       },
       {
         label: '打开文档',
-        accelerator: 'CmdOrCtrl+O',
+        accelerator: 'Shift+CmdOrCtrl+O',
         click: () => {
           dialog.showOpenDialog(
             {
@@ -94,7 +93,7 @@ const template: Array<MenuItemConstructorOptions> = [
         }
       },
       { type: 'separator' },
-      { label: '退出', accelerator: 'CmdOrCtrl+Q', role: 'quit' }]
+      { label: '退出', role: 'quit' }]
   },
   {
     label: '编辑',
@@ -157,27 +156,37 @@ async function createWindow() {
     // mac下快捷键失效的问题
     if (process.platform === 'darwin') {
       const contents = win.webContents
-      globalShortcut.register('CommandOrControl+C', () => {
+      globalShortcut.register('CmdOrCtrl+C', () => {
         console.log('注册复制快捷键成功')
         contents.copy()
       })
-      globalShortcut.register('CommandOrControl+V', () => {
+      globalShortcut.register('CmdOrCtrl+V', () => {
         console.log('注册粘贴快捷键成功')
         contents.paste()
       })
-      globalShortcut.register('CommandOrControl+X', () => {
+      globalShortcut.register('CmdOrCtrl+X', () => {
         console.log('注册剪切快捷键成功')
         contents.cut()
       })
-      globalShortcut.register('CommandOrControl+A', () => {
+      globalShortcut.register('CmdOrCtrl+A', () => {
         console.log('注册全选快捷键成功')
         contents.selectAll()
       })
+      // globalShortcut.register('CmdOrCtrl+S', () => {
+      //   console.log('注册保存快捷键成功')
+      // })
+      // globalShortcut.register('CmdOrCtrl+O', () => {
+      //   console.log('注册打开快捷键成功')
+      // })
+      // globalShortcut.register('CmdOrCtrl+N', () => {
+      //   console.log('注册新建快捷键成功')
+      // })
     }
   })
 
   win.on('blur', () => {
     globalShortcut.unregisterAll() // 注销键盘事件
+    console.log('取消快捷键')
   })
 }
 // Quit when all windows are closed.
@@ -208,6 +217,35 @@ app.on('ready', async () => {
   //   }
   if (win === null) createWindow()
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+  // mac下快捷键失效的问题
+  if (process.platform === 'darwin') {
+    const contents = win.webContents
+    globalShortcut.register('CmdOrCtrl+C', () => {
+      console.log('注册复制快捷键成功')
+      contents.copy()
+    })
+    globalShortcut.register('CmdOrCtrl+V', () => {
+      console.log('注册粘贴快捷键成功')
+      contents.paste()
+    })
+    globalShortcut.register('CmdOrCtrl+X', () => {
+      console.log('注册剪切快捷键成功')
+      contents.cut()
+    })
+    globalShortcut.register('CmdOrCtrl+A', () => {
+      console.log('注册全选快捷键成功')
+      contents.selectAll()
+    })
+    // globalShortcut.register('CmdOrCtrl+S', () => {
+    //   console.log('注册保存快捷键成功')
+    // })
+    // globalShortcut.register('CmdOrCtrl+O', () => {
+    //   console.log('注册打开快捷键成功')
+    // })
+    // globalShortcut.register('CmdOrCtrl+N', () => {
+    //   console.log('注册新建快捷键成功')
+    // })
+  }
 })
 
 // Exit cleanly on request from parent process in development mode.
