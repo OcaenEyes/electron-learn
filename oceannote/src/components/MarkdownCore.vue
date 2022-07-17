@@ -4,7 +4,7 @@
  * @Autor: OCEAN.GZY
  * @Date: 2022-07-16 09:50:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-17 10:13:11
+ * @LastEditTime: 2022-07-17 21:03:12
 -->
 <template>
   <div id="editor" style="height:100%">
@@ -20,7 +20,7 @@ export default defineComponent({
   name: 'MarkdownCore',
   setup() {
     const inputtext = ref('')
-    const mdOptions = ref({})
+    const mdOptions = ref<Record<string, unknown>>({})
     onMounted(() => {
       ipcRenderer.on('fileOpenPath', (event, filepath: string) => {
         if (filepath && filepath.length > 0) {
