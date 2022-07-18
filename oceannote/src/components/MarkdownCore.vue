@@ -4,7 +4,7 @@
  * @Autor: OCEAN.GZY
  * @Date: 2022-07-16 09:50:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-18 13:22:51
+ * @LastEditTime: 2022-07-18 13:56:30
 -->
 <template>
   <div id="editor" style="height:100%">
@@ -79,7 +79,22 @@ export default defineComponent({
         const payload = url.replace(/protocol:\/\//, '').split('/')
         inputtext.value = fs.readFileSync(payload).toString()
       })
+      const dragWrapper = document.getElementById('editor')
+      // console.log(dragWrapper)
+      dragWrapper?.addEventListener('drop', (e) => {
+        e.preventDefault()
+        const files = e.dataTransfer?.files
+        // console.log(files)
+        if (files && files.length > 0) {
+          inputtext.value = fs.readFileSync(files[0].path).toString()
+        }
+      })
+      //  阻止拖拽结束事件默认行为
+      dragWrapper?.addEventListener('dragover', (e) => {
+        e.preventDefault()
+      })
     })
+
     return {
       inputtext,
       mdOptions

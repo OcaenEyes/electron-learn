@@ -4,11 +4,12 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-16 00:03:46
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-18 13:16:42
+ * @LastEditTime: 2022-07-18 13:47:06
  */
 import { app, protocol, BrowserWindow, ipcMain, MenuItemConstructorOptions, dialog, shell, Menu, globalShortcut } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import fs from 'fs'
+import path from 'path'
 // import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 let openedFile = ''
@@ -193,7 +194,7 @@ async function createWindow() {
   // 从协议打开应用时，mainWindow 还没有创建完成
   setTimeout(() => {
     if (openFromProtocolUrl) {
-      win.isMinimized() && win.restore()
+      // win.isMinimized() && win.restore()
       if (openFromProtocolUrl.match(/^protocol:\/\//)) {
         win.webContents.send('open-url', decodeURIComponent(openFromProtocolUrl))
       } else {
@@ -207,7 +208,7 @@ async function createWindow() {
 
 const openUrl = (url: string) => {
   if (win) {
-    win.isMinimized() && win.restore()
+    // win.isMinimized() && win.restore()
     if (url.match(/^protocol:\/\//)) {
       win.webContents.send('open-url', decodeURIComponent(url))
     } else {
