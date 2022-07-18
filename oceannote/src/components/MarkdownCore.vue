@@ -4,11 +4,11 @@
  * @Autor: OCEAN.GZY
  * @Date: 2022-07-16 09:50:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-17 21:03:12
+ * @LastEditTime: 2022-07-18 11:51:48
 -->
 <template>
   <div id="editor" style="height:100%">
-    <mavon-editor v-model="inputtext" style="height: 100%" :toolbars="mdOptions" tabSize="4"></mavon-editor>
+    <mavon-editor v-model="inputtext" style="height: 100%" :toolbars="mdOptions"></mavon-editor>
   </div>
 </template>
 
