@@ -4,7 +4,7 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-16 00:03:46
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-17 10:35:15
+ * @LastEditTime: 2022-07-18 13:16:42
  */
 import { app, protocol, BrowserWindow, ipcMain, MenuItemConstructorOptions, dialog, shell, Menu, globalShortcut } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
@@ -12,6 +12,7 @@ import fs from 'fs'
 // import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 let openedFile = ''
+let openFromProtocolUrl = ''
 // 主线程
 ipcMain.on('saveContent', (event, content) => {
   if (openedFile.length > 0) {
@@ -188,7 +189,46 @@ async function createWindow() {
     globalShortcut.unregisterAll() // 注销键盘事件
     console.log('取消快捷键')
   })
+
+  // 从协议打开应用时，mainWindow 还没有创建完成
+  setTimeout(() => {
+    if (openFromProtocolUrl) {
+      win.isMinimized() && win.restore()
+      if (openFromProtocolUrl.match(/^protocol:\/\//)) {
+        win.webContents.send('open-url', decodeURIComponent(openFromProtocolUrl))
+      } else {
+        win.webContents.send('open-file', openFromProtocolUrl)
+      }
+      win.focus()
+      openFromProtocolUrl = ''
+    }
+  }, 1500)
 }
+
+const openUrl = (url: string) => {
+  if (win) {
+    win.isMinimized() && win.restore()
+    if (url.match(/^protocol:\/\//)) {
+      win.webContents.send('open-url', decodeURIComponent(url))
+    } else {
+      win.webContents.send('open-file', url)
+    }
+    win.focus()
+  } else {
+    openFromProtocolUrl = url
+  }
+}
+app.on('will-finish-launching', () => {
+  if (win === null) createWindow()
+  app.on('open-url', (event, url) => {
+    openUrl(url)
+  })
+  app.on('open-file', (event, url) => {
+    openUrl(url)
+  })
+})
+app.setAsDefaultProtocolClient('protocol')
+
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
   // On macOS it is common for applications and their menu bar

@@ -4,7 +4,7 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-15 17:35:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-17 21:05:08
+ * @LastEditTime: 2022-07-18 12:45:40
  */
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
@@ -38,7 +38,9 @@ module.exports = defineConfig({
           ext: [
             'md',
             'markdown'
-          ]
+          ],
+          name: 'markdown',
+          role: 'Editor'
         },
         nsis: {
           allowToChangeInstallationDirectory: true,

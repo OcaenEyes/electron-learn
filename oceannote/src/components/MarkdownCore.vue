@@ -4,7 +4,7 @@
  * @Autor: OCEAN.GZY
  * @Date: 2022-07-16 09:50:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-18 11:51:48
+ * @LastEditTime: 2022-07-18 13:22:51
 -->
 <template>
   <div id="editor" style="height:100%">
@@ -68,6 +68,17 @@ export default defineComponent({
         subfield: true, // 单双栏模式
         preview: true// 预览
       }
+
+      const fileAssociationsReg = /\.md$/g
+      ipcRenderer.on('open-file', (event, filepath) => {
+        console.log(filepath)
+        if (!filepath.match(fileAssociationsReg)) return console.log(`%c错误，该文件不为文本：${filepath}`, 'color:red')
+        inputtext.value = fs.readFileSync(filepath).toString()
+      })
+      ipcRenderer.on('open-url', (event, url) => {
+        const payload = url.replace(/protocol:\/\//, '').split('/')
+        inputtext.value = fs.readFileSync(payload).toString()
+      })
     })
     return {
       inputtext,
