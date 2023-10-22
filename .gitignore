@@ -1,4 +1,6 @@
 youone/node_modules/
 .DS_Store
 **/*/dist*
-**/*/dist_electron/
+**/*/dist_electron
+**/*/build
+**/*/*.lock
