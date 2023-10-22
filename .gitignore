@@ -1,3 +1,4 @@
 youone/node_modules/
 .DS_Store
 **/*/dist*
+**/*/dist_electron/
