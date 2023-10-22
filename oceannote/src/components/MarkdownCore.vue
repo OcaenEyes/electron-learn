@@ -4,7 +4,7 @@
  * @Autor: OCEAN.GZY
  * @Date: 2022-07-16 09:50:07
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-18 14:23:53
+ * @LastEditTime: 2022-12-01 16:17:38
 -->
 <template>
   <div id="editor" style="height:100%">
@@ -22,6 +22,7 @@ export default defineComponent({
     const inputtext = ref('')
     const mdOptions = ref<Record<string, unknown>>({})
     onMounted(() => {
+      ipcRenderer.on('openDirectory', (event, filepath: string) => { console.log(filepath) })
       ipcRenderer.on('fileOpenPath', (event, filepath: string) => {
         if (filepath && filepath.length > 0) {
           inputtext.value = fs.readFileSync(filepath).toString()
@@ -106,4 +107,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
 </style>

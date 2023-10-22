@@ -4,7 +4,7 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-07-16 00:03:46
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-07-18 13:47:06
+ * @LastEditTime: 2022-12-01 16:17:24
  */
 import { app, protocol, BrowserWindow, ipcMain, MenuItemConstructorOptions, dialog, shell, Menu, globalShortcut } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
@@ -52,6 +52,25 @@ const template: Array<MenuItemConstructorOptions> = [
   {
     label: '文件',
     submenu: [
+      {
+        label: '打开文件夹',
+        accelerator: 'Shift+CmdOrCtrl+O',
+        click: () => {
+          dialog.showOpenDialog(
+            {
+              title: '打开文件夹',
+              defaultPath: '',
+              properties: ['openDirectory']
+            }).then((res) => {
+            if (res && res.filePaths.length > 0) {
+              if (win) {
+                win.webContents.send('openDirectory', res.filePaths[0])
+                openedFile = res.filePaths[0]
+              }
+            }
+          }).catch(e => console.log(e))
+        }
+      },
       {
         label: '新建文档',
         accelerator: 'Shift+CmdOrCtrl+N',
