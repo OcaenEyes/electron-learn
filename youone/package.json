@@ -1,7 +1,7 @@
 {
   "name": "youone",
   "version": "0.0.1",
-  "author": "OcaenEyes <1450136519@qq.com>",
+  "author": "oceangzy <1450136519@qq.com>",
   "description": "youone music",
   "license": null,
   "main": "./dist/electron/main.js",

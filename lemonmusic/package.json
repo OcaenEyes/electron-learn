@@ -1,7 +1,7 @@
 {
   "name": "lemonmusic",
   "version": "0.0.1",
-  "author": "OcaenEyes <1450136519@qq.com>",
+  "author": "oceangzy <1450136519@qq.com>",
   "description": "柠檬音乐",
   "license": null,
   "main": "./dist/electron/main.js",
